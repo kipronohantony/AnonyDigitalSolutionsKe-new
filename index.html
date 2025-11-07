@@ -56,6 +56,57 @@
 
     <body>
       <div id="root"></div>
+
+      <!-- Runtime error overlay: captures uncaught errors and shows them instead of a white screen -->
+      <script>
+        (function () {
+          function showErrorOverlay(message, stack) {
+            try {
+              var css = "position:fixed;inset:0;background:rgba(0,0,0,0.85);color:#fff;padding:24px;font-family:system-ui,Segoe UI,Arial;z-index:99999;overflow:auto;";
+              var container = document.createElement('div');
+              container.setAttribute('id', 'runtime-error-overlay');
+              container.setAttribute('style', css);
+              var title = document.createElement('h2');
+              title.textContent = 'Runtime error detected';
+              title.style.marginTop = '0';
+              title.style.color = '#ff6b6b';
+              var msg = document.createElement('pre');
+              msg.textContent = message + (stack ? '\n\n' + stack : '');
+              msg.style.whiteSpace = 'pre-wrap';
+              msg.style.wordBreak = 'break-word';
+              msg.style.fontSize = '13px';
+              container.appendChild(title);
+              container.appendChild(msg);
+              var close = document.createElement('button');
+              close.textContent = 'Close overlay';
+              close.style.marginTop = '16px';
+              close.style.padding = '8px 12px';
+              close.onclick = function () { container.style.display = 'none'; };
+              container.appendChild(close);
+              document.body.appendChild(container);
+            } catch (e) {
+              // ignore
+            }
+          }
+
+          window.addEventListener('error', function (ev) {
+            var message = (ev && ev.message) || (ev && ev.error && ev.error.message) || String(ev);
+            var stack = (ev && ev.error && ev.error.stack) || ev.error || ev;
+            console.error('Captured error:', ev.error || ev);
+            // Delay so DOM is ready
+            setTimeout(function () { showErrorOverlay(message, stack && stack.stack ? stack.stack : stack); }, 50);
+          });
+
+          window.addEventListener('unhandledrejection', function (ev) {
+            var reason = ev && ev.reason ? ev.reason : ev;
+            var message = (reason && reason.message) || String(reason);
+            var stack = (reason && reason.stack) || reason;
+            console.error('Unhandled rejection:', reason);
+            setTimeout(function () { showErrorOverlay('Unhandled Promise rejection: ' + message, stack && stack.stack ? stack.stack : stack); }, 50);
+          });
+        })();
+      </script>
+
       <script type="module" src="/src/main.tsx"></script>
     </body>
   </html>
