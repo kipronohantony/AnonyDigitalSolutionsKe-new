@@ -9,10 +9,18 @@ interface FooterProps {
 export function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="relative bg-accent text-white overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-primary rounded-lg blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-20 w-64 h-64 bg-secondary rounded-lg blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+      {/* Animated background elements - responsive: use viewport units on small devices so shapes span the full width */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
+        {/* Top decorative shape: full-width on mobile/tablet, fixed on desktop */}
+        <div
+          className="absolute top-8 left-1/2 -translate-x-1/2 w-[90vw] h-[50vw] sm:w-[70vw] sm:h-[35vw] md:left-20 md:translate-x-0 md:w-64 md:h-64 bg-primary rounded-[2rem] blur-3xl animate-float"
+        />
+
+        {/* Bottom decorative shape: full-width on mobile/tablet, fixed on desktop */}
+        <div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[90vw] h-[50vw] sm:w-[70vw] sm:h-[35vw] md:right-20 md:left-auto md:translate-x-0 md:w-64 md:h-64 bg-secondary rounded-[2rem] blur-3xl animate-float"
+          style={{ animationDelay: '2s' }}
+        />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -37,6 +45,8 @@ export function Footer({ onNavigate }: FooterProps) {
               { Icon: Twitter, href: "https://x.com/Antony_1kip?t=E1pM6mQBL_iuWLEr-yWCag&s=09" },
               { Icon: Linkedin, href: "https://www.linkedin.com/in/antony-kipronoh-0015732aa?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
               { Icon: Instagram, href: "https://www.instagram.com/antony_digital_solutions_ke?igsh=ZWJ4MmdqOWkwcTM3" },
+              { Icon: Tiktok, href: "https://www.tiktok.com/@antony_digital_solutions?_r=1&_t=ZM-91C6nlTmpps" },
+                         
               ].map(({ Icon, href }, index) => (
               <motion.a
                 key={index}
