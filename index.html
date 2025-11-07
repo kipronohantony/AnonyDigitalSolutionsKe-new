@@ -20,7 +20,40 @@
   <meta property="og:image:height" content="630" />
 
       <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
+        <div id="root"></div>
+        <script type="module">
+          // Boot the app and surface any module/runtime errors as a visible overlay.
+          (async () => {
+            try {
+              await import('/src/main.tsx');
+            } catch (err) {
+              console.error('App bootstrap error', err);
+              const overlay = document.createElement('div');
+              overlay.style.position = 'fixed';
+              overlay.style.left = '0';
+              overlay.style.top = '0';
+              overlay.style.width = '100%';
+              overlay.style.height = '100%';
+              overlay.style.background = 'rgba(0,0,0,0.85)';
+              overlay.style.color = 'white';
+              overlay.style.zIndex = '999999';
+              overlay.style.padding = '24px';
+              overlay.style.overflow = 'auto';
+              const title = document.createElement('h2');
+              title.textContent = 'Runtime error — unable to load the app';
+              title.style.marginTop = '0';
+              title.style.fontSize = '20px';
+              const pre = document.createElement('pre');
+              pre.style.whiteSpace = 'pre-wrap';
+              pre.style.wordBreak = 'break-word';
+              pre.style.fontSize = '13px';
+              pre.textContent = (err && err.stack) ? err.stack : String(err);
+              overlay.appendChild(title);
+              overlay.appendChild(pre);
+              document.body.appendChild(overlay);
+            }
+          })();
+        </script>
   <meta name="twitter:site" content="@AntonyDigitalKE" />
   <meta name="twitter:title" content="Antony Digital Solutions KE — Best web developer in Eldoret" />
   <meta name="twitter:description" content="Best web developer in Eldoret — Web development, mobile apps, SEO and e-commerce by Antony Kipkosgei Kipronoh." />
