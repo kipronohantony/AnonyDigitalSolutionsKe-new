@@ -2,7 +2,11 @@ import { Mail, Phone, Send, Facebook, Twitter, Linkedin, Instagram } from "lucid
 import { motion } from "motion/react";
 import logo from "figma:asset/c589e228208fb243daf7e6faba1fadad8865abe7.png";
 
-export function Footer() {
+interface FooterProps {
+  onNavigate?: (page: string) => void;
+}
+
+export function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="relative bg-accent text-white overflow-hidden">
       {/* Animated background elements */}
@@ -58,10 +62,14 @@ export function Footer() {
           >
             <h4 className="text-white mb-4">Quick Links</h4>
             <ul className="space-y-3">
-              {["Home", "Services", "About", "Portfolio"].map((link, index) => (
+              {[{name: 'Home', id: 'home'}, {name: 'Services', id: 'services'}, {name: 'About', id: 'about'}, {name: 'Portfolio', id: 'portfolio'}].map((link, index) => (
                 <motion.li key={index} whileHover={{ x: 5 }}>
-                  <a href="#" className="text-gray-300 hover:text-primary transition-colors inline-block">
-                    {link}
+                  <a
+                    href="#"
+                    onClick={(e) => { e.preventDefault(); onNavigate?.(link.id); }}
+                    className="text-gray-300 hover:text-primary transition-colors inline-block"
+                  >
+                    {link.name}
                   </a>
                 </motion.li>
               ))}
@@ -83,7 +91,14 @@ export function Footer() {
               </li>
               <li className="flex items-start text-gray-300">
                 <Phone size={16} className="mr-2 mt-1 flex-shrink-0 text-primary" />
-                <span className="text-sm">+254 727 860 767</span>
+                <a
+                  href="https://wa.me/254727860767"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-300 hover:text-primary transition-colors"
+                >
+                  Chat on WhatsApp (+254 727 860 767)
+                </a>
               </li>
               <li className="flex items-start text-gray-300">
                 <Send size={16} className="mr-2 mt-1 flex-shrink-0 text-primary" />
@@ -102,14 +117,22 @@ export function Footer() {
           <p className="text-gray-400 text-sm">
             &copy; 2025 Antony Digital Solutions KE. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm">
-            <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-              Terms of Service
-            </a>
-          </div>
+            <div className="flex gap-6 text-sm">
+              <a
+                href="#"
+                onClick={(e) => { e.preventDefault(); onNavigate?.('privacy'); }}
+                className="text-gray-400 hover:text-primary transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="#"
+                onClick={(e) => { e.preventDefault(); onNavigate?.('terms'); }}
+                className="text-gray-400 hover:text-primary transition-colors"
+              >
+                Terms of Service
+              </a>
+            </div>
         </motion.div>
       </div>
     </footer>
