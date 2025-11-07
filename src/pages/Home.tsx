@@ -117,8 +117,7 @@ export function Home({ onNavigate }: HomeProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                Transform your business with innovative web & mobile solutions. 
-                We craft digital experiences that drive growth.
+                Led by Antony Kipkosgei Kipronoh in Eldoret, Kenya — we transform businesses with professional web development, mobile apps, SEO, e‑commerce and cloud solutions. We craft digital experiences that drive measurable growth for Kenyan companies.
               </motion.p>
               
               <motion.div
