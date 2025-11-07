@@ -1,0 +1,6 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://antonydigitalsolutionske.online/sitemap.xml
+
+# If you want to block crawling of admin or other paths, add Disallow rules above.

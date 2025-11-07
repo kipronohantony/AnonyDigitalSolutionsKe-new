@@ -1,0 +1,20 @@
+name: smoke-test
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run curl check for /portfolio
+        run: |
+          set -e
+          echo "Checking https://antonydigitalsolutionske.online/portfolio"
+          status=$(curl -s -o /dev/null -w "%{http_code}" https://antonydigitalsolutionske.online/portfolio)
+          echo "Status: $status"
+          if [ "$status" -ne 200 ]; then
+            echo "Smoke check failed: expected 200 but got $status"
+            exit 1
+          fi

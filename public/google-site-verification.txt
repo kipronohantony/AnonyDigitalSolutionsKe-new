@@ -1,0 +1,6 @@
+Replace this file with the Google Search Console verification HTML file or token provided by Google.
+For example, after verifying in Search Console you may upload the exact file named like:
+googleXXXXXXXXXXXXXXXX.html
+Or add the meta tag they provide into `index.html`.
+
+This placeholder exists so you have a convenient place to add the verification file.

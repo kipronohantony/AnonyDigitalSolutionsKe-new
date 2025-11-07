@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useEffect } from "react";
 import { Target, Eye, Award, Users, Lightbulb, Shield, Heart, CheckCircle, Zap, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
@@ -6,6 +7,14 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import logo from "figma:asset/c589e228208fb243daf7e6faba1fadad8865abe7.png";
 
 export function About() {
+  useEffect(() => {
+    import('../utils/seo').then(m => m.setMeta({
+      title: 'About - Antony Digital Solutions KE | Web Development Eldoret, Kenya',
+      description: 'About Antony Digital Solutions KE — Led by Antony Kipkosgei Kipronoh. Web & mobile development, SEO, e-commerce and cloud services in Eldoret and Kenya.',
+      image: '/src/assets/c589e228208fb243daf7e6faba1fadad8865abe7.png',
+      url: 'https://antonydigitalsolutionske.online/about'
+    }));
+  }, []);
   const values = [
     {
       icon: Lightbulb,

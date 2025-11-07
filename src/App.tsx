@@ -6,6 +6,8 @@ import { Services } from "./pages/Services";
 import { About } from "./pages/About";
 import { Portfolio } from "./pages/Portfolio";
 import { Contact } from "./pages/Contact";
+import { Terms } from "./pages/Terms";
+import { Privacy } from "./pages/Privacy";
 import { Admin } from "./pages/Admin";
 import { Toaster } from "./components/ui/sonner";
 
@@ -34,6 +36,10 @@ export default function App() {
         return <Portfolio onNavigate={handleNavigate} />;
       case "contact":
         return <Contact />;
+      case "terms":
+        return <Terms />;
+      case "privacy":
+        return <Privacy />;
       case "admin":
         return <Admin onNavigate={handleNavigate} />;
       default:
@@ -47,7 +53,7 @@ export default function App() {
       <main className="flex-1">
         {renderPage()}
       </main>
-      <Footer />
+      <Footer onNavigate={handleNavigate} />
       <Toaster />
     </div>
   );

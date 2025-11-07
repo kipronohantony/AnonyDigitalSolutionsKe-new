@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useEffect } from "react";
 import { Code, Smartphone, TrendingUp, FileText, Check, ArrowRight } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
@@ -11,6 +12,14 @@ interface ServicesProps {
 }
 
 export function Services({ onNavigate }: ServicesProps) {
+  useEffect(() => {
+    import('../utils/seo').then(m => m.setMeta({
+      title: 'Services - Antony Digital Solutions KE | Web Development Eldoret, Kenya',
+      description: 'Web development, mobile apps, SEO, e-commerce and cloud services delivered by Antony Kipkosgei Kipronoh in Eldoret and across Kenya.',
+      image: '/src/assets/c589e228208fb243daf7e6faba1fadad8865abe7.png',
+      url: 'https://antonydigitalsolutionske.online/services'
+    }));
+  }, []);
   const services = [
     {
       icon: Code,

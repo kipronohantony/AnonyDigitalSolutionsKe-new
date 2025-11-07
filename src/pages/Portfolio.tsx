@@ -36,6 +36,14 @@ interface Project {
 }
 
 export function Portfolio({ onNavigate }: PortfolioProps) {
+  useEffect(() => {
+    import('../utils/seo').then(m => m.setMeta({
+      title: 'Portfolio - Antony Digital Solutions KE | Web Development Eldoret',
+      description: 'Portfolio showcasing web, mobile and e-commerce projects built by Antony Kipkosgei Kipronoh. Serving Eldoret and clients across Kenya.',
+      image: '/src/assets/c589e228208fb243daf7e6faba1fadad8865abe7.png',
+      url: 'https://antonydigitalsolutionske.online/portfolio'
+    }));
+  }, []);
   const [filter, setFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
