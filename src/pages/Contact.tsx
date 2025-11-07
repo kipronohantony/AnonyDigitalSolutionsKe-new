@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import logo from "figma:asset/c589e228208fb243daf7e6faba1fadad8865abe7.png";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -36,15 +36,16 @@ export function Contact() {
     {
       icon: Mail,
       title: "Email",
-      value: "support@antonydigitalsolutions.co.ke",
-      link: "mailto:support@antonydigitalsolutions.co.ke",
+      value: "kipronohantony@gmail.com",
+      link: "mailto:kipronohantony@gmail.com",
       gradient: "from-blue-500 to-cyan-500"
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+254 XXX XXX XXX",
-      link: "tel:+254XXXXXXXXX",
+      value: "+254 727 860 767",
+      // Use WhatsApp quick link for direct chat
+      link: "https://wa.me/254727860767",
       gradient: "from-green-500 to-teal-500"
     },
     {
@@ -352,13 +353,15 @@ export function Contact() {
               Reach out directly via WhatsApp or Telegram
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="rounded-full bg-white text-primary hover:bg-gray-100 hover:scale-105 transition-all text-lg px-8 py-6"
-              >
-                <Phone className="mr-2" size={20} />
-                WhatsApp Us
-              </Button>
+              <a href="https://wa.me/254727860767" target="_blank" rel="noopener noreferrer">
+                <Button
+                  size="lg"
+                  className="rounded-full bg-white text-primary hover:bg-gray-100 hover:scale-105 transition-all text-lg px-8 py-6"
+                >
+                  <Phone className="mr-2" size={20} />
+                  WhatsApp Us
+                </Button>
+              </a>
               <Button
                 size="lg"
                 variant="outline"
